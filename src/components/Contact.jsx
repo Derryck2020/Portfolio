@@ -18,6 +18,9 @@ const Contact = () => {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const serviceId = import.meta.env.VITE_SERVICE_ID;
+		const templateId = import.meta.env.VITE_TEMPLATE_ID;
+		const publicId = import.meta.env.VITE_PUBLIC_ID;
 
 		if (!form.name || !form.email || !form.message) {
 			alert('Please fill in all required fields');
@@ -27,8 +30,8 @@ const Contact = () => {
 
 		emailjs
 			.send(
-				'service_h7ryoxp',
-				'template_vasacsu',
+				serviceId,
+				templateId,
 				{
 					from_name: form.name,
 					to_name: 'Derryck',
@@ -36,7 +39,7 @@ const Contact = () => {
 					to_email: 'oseiagyemanb@gmail.com',
 					message: form.message,
 				},
-				'xotXKhxBxEeEPx7sQ',
+				publicId,
 				setLoading(true)
 			)
 			.then(
